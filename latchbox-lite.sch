@@ -17151,25 +17151,25 @@ Source: www.kingbright.com</description>
 <approved hash="104,1,119.38,121.92,IC1,VDD,VCC,,,"/>
 <approved hash="104,1,160.02,121.92,IC1,VSS,GND,,,"/>
 <approved hash="113,1,45.72,110.215,R2,,,,,"/>
-<approved hash="113,1,66.04,163.728,TR1,,,,,"/>
-<approved hash="113,1,25.4,163.288,PTC1,,,,,"/>
+<approved hash="113,1,66.04,163.224,Q1,,,,,"/>
+<approved hash="113,1,25.4,163.288,F1,,,,,"/>
 <approved hash="113,1,12.4629,162.429,BATT,,,,,"/>
-<approved hash="113,1,116.84,168.635,R4,,,,,"/>
+<approved hash="113,1,116.84,168.635,R6,,,,,"/>
 <approved hash="113,1,138.43,131.211,C1,,,,,"/>
 <approved hash="113,1,47.078,156.21,C3,,,,,"/>
-<approved hash="113,1,54.8852,154.94,R3,,,,,"/>
+<approved hash="113,1,54.8852,154.94,R4,,,,,"/>
 <approved hash="113,1,82.638,156.21,C2,,,,,"/>
-<approved hash="113,1,185.742,95.25,L2,,,,,"/>
-<approved hash="113,1,180.662,95.25,L1,,,,,"/>
-<approved hash="113,1,179.345,106.68,R6,,,,,"/>
+<approved hash="113,1,185.742,95.25,LED2,,,,,"/>
+<approved hash="113,1,180.662,95.25,LED1,,,,,"/>
+<approved hash="113,1,179.345,106.68,R7,,,,,"/>
 <approved hash="113,1,184.425,106.68,R1,,,,,"/>
-<approved hash="113,1,129.548,166.666,TR2,,,,,"/>
+<approved hash="113,1,129.548,166.666,Q3,,,,,"/>
 <approved hash="113,1,11.0243,184.92,USB,,,,,"/>
-<approved hash="113,1,38.1,166.277,D3,,,,,"/>
-<approved hash="113,1,44.7252,177.8,R5,,,,,"/>
+<approved hash="113,1,38.1,166.277,D2,,,,,"/>
+<approved hash="113,1,44.7252,177.8,R3,,,,,"/>
 <approved hash="113,1,193.277,123.321,ICSP,,,,,"/>
-<approved hash="113,1,69.2065,132.376,T1,,,,,"/>
-<approved hash="113,1,76.2,133.075,R7,,,,,"/>
+<approved hash="113,1,69.2065,132.376,Q2,,,,,"/>
+<approved hash="113,1,76.2,133.075,R5,,,,,"/>
 </errors>
 </schematic>
 </drawing>
