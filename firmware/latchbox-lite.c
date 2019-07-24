@@ -1,3 +1,15 @@
+//////////////////////////////////////////////////////////////
+//
+// LATCHBOX
+// Latch utility for accessibility switches
+// hotchk155/2019
+// Sixty Four Pixels Limited / OneSwitch.org
+//
+// This work is distibuted under terms of Creative Commons 
+// License BY-NC-SA (Attribution, Non-commercial, Share-Alike)
+// https://creativecommons.org/licenses/by-nc-sa/4.0/
+//
+//////////////////////////////////////////////////////////////
 
 //
 // HEADER FILES
@@ -28,6 +40,10 @@ typedef unsigned char byte;
 #define P_POWER		porta.4
 #define P_SWITCH	porta.5
 
+// timeouts
+#define AUTO_POWER_OFF_MS		(5 * 60 * 1000)		// time from last input to auto power off
+#define POWER_WARN_MS			(10 * 1000)			// warning time before auto power off
+#define DEBOUNCE_MS 			20					
 
 #define TIMER_0_INIT_SCALAR		5	// Timer 0 is an 8 bit timer counting at 250kHz
 									// using this init scalar means that rollover
@@ -52,15 +68,11 @@ void interrupt( void )
 	{
 		tmr0 = TIMER_0_INIT_SCALAR;
 		systemTicks++;
-		tick_flag = 1;
+		tick_flag = 1;	
 		intcon.2 = 0;
 	}
 
 }
-
-#define AUTO_POWER_OFF_MS		(5 * 60 * 1000)
-#define POWER_WARN_MS			(10 * 1000)
-#define DEBOUNCE_MS 			20
 
 ////////////////////////////////////////////////////////////
 // MAIN
@@ -101,22 +113,37 @@ void main()
 	int debounce_timeout = 0;
 	int input_state = 1;
 	int output_state = 0;
+	
+	// quick blink of both LEDs
 	P_LED_PWR = 1;
 	P_LED_OUT = 1;
 	delay_ms(20);
 	P_LED_OUT = 0;
 	P_LED_PWR = 0;
+	
+	// need to hold button...
 	delay_s(1);
+	
+	// ...before power is latched on
 	P_POWER = 1;
+	
+	
 	for(;;) {		
-		if(tick_flag) {
+		if(tick_flag) {	// once a ms
 			tick_flag = 0;
+						
 			if(activity_timeout) {
 				if(!--activity_timeout) {
 					// turn power off
 					break;
 				}
 			}
+
+			if(debounce_timeout) {
+				--debounce_timeout;
+			}	
+			
+			// Power LED handling
 			if(activity_timeout < POWER_WARN_MS) {
 				P_LED_PWR = !!(activity_timeout & 0x80);
 			}
@@ -124,6 +151,7 @@ void main()
 				P_LED_PWR = !!(activity_timeout & 0x01); // 50% duty
 			}
 			
+			// Output LED handling
 			if(output_state) {
 				P_LED_OUT = !!(activity_timeout & 0x01); // 50% duty
 			}			
@@ -131,10 +159,9 @@ void main()
 				P_LED_OUT = 0;
 			}
 			
-			if(debounce_timeout) {
-				--debounce_timeout;
-			}	
 		}
+		
+		// check switch input
 		if(!debounce_timeout) { // finished debouncing 
 			if(input_state) { // switch was pressed when we last looked
 				if(P_SWITCH) {
@@ -161,5 +188,6 @@ void main()
 	P_RELAY = 0;
 	P_POWER = 0;
 	
+	// Hang till power is properly off and we shut down
 	for(;;);
 }
