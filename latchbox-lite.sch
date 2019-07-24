@@ -16735,7 +16735,7 @@ Source: www.kingbright.com</description>
 <part name="RLY1" library="jason_eagle6" deviceset="9007-REED-RELAY" device=""/>
 <part name="IC1" library="jasons_stuff" deviceset="PIC12F1822" device="SO08"/>
 <part name="D4" library="jasons_stuff" deviceset="0805DIODE" device=""/>
-<part name="R2" library="rcl" deviceset="R-EU_" device="R0805"/>
+<part name="R2" library="rcl" deviceset="R-EU_" device="R0805" value="100r"/>
 <part name="Q1" library="microbuilder" deviceset="MOSFET-P" device=""/>
 <part name="D1" library="jasons_stuff" deviceset="0805DIODE" device=""/>
 <part name="F1" library="microbuilder" deviceset="PTC" device="1206"/>
@@ -16745,21 +16745,21 @@ Source: www.kingbright.com</description>
 <part name="GND4" library="supply1" deviceset="GND" device=""/>
 <part name="P+2" library="supply1" deviceset="VCC" device=""/>
 <part name="P+3" library="supply1" deviceset="VCC" device=""/>
-<part name="R6" library="rcl" deviceset="R-EU_" device="R0805"/>
+<part name="R6" library="rcl" deviceset="R-EU_" device="R0805" value="1k"/>
 <part name="GND5" library="supply1" deviceset="GND" device=""/>
 <part name="D3" library="jasons_stuff" deviceset="0805DIODE" device=""/>
 <part name="P+4" library="supply1" deviceset="VCC" device=""/>
 <part name="C1" library="rcl" deviceset="C-EU" device="C0805"/>
 <part name="P+5" library="supply1" deviceset="VCC" device=""/>
 <part name="C3" library="rcl" deviceset="CPOL-EU" device="E2,5-6E"/>
-<part name="R4" library="rcl" deviceset="R-EU_" device="R0805"/>
+<part name="R4" library="rcl" deviceset="R-EU_" device="R0805" value="10k"/>
 <part name="GND6" library="supply1" deviceset="GND" device=""/>
 <part name="C2" library="rcl" deviceset="CPOL-EU" device="E2,5-6E"/>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
 <part name="LED2" library="led" deviceset="LED" device="3MM"/>
 <part name="LED1" library="led" deviceset="LED" device="3MM"/>
-<part name="R7" library="rcl" deviceset="R-EU_" device="R0805"/>
-<part name="R1" library="rcl" deviceset="R-EU_" device="R0805"/>
+<part name="R7" library="rcl" deviceset="R-EU_" device="R0805" value="1k"/>
+<part name="R1" library="rcl" deviceset="R-EU_" device="R0805" value="1k"/>
 <part name="GND8" library="supply1" deviceset="GND" device=""/>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
 <part name="Q3" library="transistor" deviceset="*-NPN_DARL-" device="SOT23-BEC" technology="MMBTA13LT1"/>
