@@ -22,9 +22,11 @@ typedef unsigned char byte;
 //
 
 // outputs
-#define P_LED		portc.2
-#define P_POWER		portc.3
-#define P_SW		portc.4
+#define P_LED_PWR	porta.1
+#define P_LED_OUT	porta.0
+#define P_RELAY		porta.2
+#define P_POWER		porta.4
+#define P_SWITCH	porta.5
 
 
 #define TIMER_0_INIT_SCALAR		5	// Timer 0 is an 8 bit timer counting at 250kHz
@@ -50,10 +52,15 @@ void interrupt( void )
 	{
 		tmr0 = TIMER_0_INIT_SCALAR;
 		systemTicks++;
+		tick_flag = 1;
 		intcon.2 = 0;
 	}
 
 }
+
+#define AUTO_POWER_OFF_MS		(5 * 60 * 1000)
+#define POWER_WARN_MS			(10 * 1000)
+#define DEBOUNCE_MS 			20
 
 ////////////////////////////////////////////////////////////
 // MAIN
@@ -61,10 +68,10 @@ void main()
 { 
 	// osc control / 16MHz / internal
 	osccon = 0b01111010;
-	
+
 	// configure io
-	trisa = 0b11111111;              	
-    trisc = 0b11110011;              
+	trisa = 0b11101000;              	
+    trisc = 0b11111111;              
 	ansela = 0b00000000;
 	anselc = 0b00000000;
 	porta=0;
@@ -83,28 +90,76 @@ void main()
 	intcon.5 = 1; 	  // enabled timer 0 interrrupt
 	intcon.2 = 0;     // clear interrupt fired flag
 	
-	wpuc.4=1;
+	wpua.5=1;
 	option_reg.7=0;
 	
 	// enable interrupts	
 	intcon.7 = 1; //GIE
 	intcon.6 = 1; //PEIE
 
-	P_POWER = 0;
-	delay_s(2);
+	unsigned long activity_timeout = AUTO_POWER_OFF_MS;
+	int debounce_timeout = 0;
+	int input_state = 1;
+	int output_state = 0;
+	P_LED_PWR = 1;
+	P_LED_OUT = 1;
+	delay_ms(20);
+	P_LED_OUT = 0;
+	P_LED_PWR = 0;
+	delay_s(1);
 	P_POWER = 1;
-	// App loop
-	int j=5;
-	for(;;)
-	{	
-		P_LED = 1;
-		while(!P_SW)
-		delay_ms(20);
-		P_LED = 0;		
-		while(P_SW);
-		delay_ms(20);
-		if(!--j) {
-			P_POWER = 0;
+	for(;;) {		
+		if(tick_flag) {
+			tick_flag = 0;
+			if(activity_timeout) {
+				if(!--activity_timeout) {
+					// turn power off
+					break;
+				}
+			}
+			if(activity_timeout < POWER_WARN_MS) {
+				P_LED_PWR = !!(activity_timeout & 0x80);
+			}
+			else {
+				P_LED_PWR = !!(activity_timeout & 0x01); // 50% duty
+			}
+			
+			if(output_state) {
+				P_LED_OUT = !!(activity_timeout & 0x01); // 50% duty
+			}			
+			else {
+				P_LED_OUT = 0;
+			}
+			
+			if(debounce_timeout) {
+				--debounce_timeout;
+			}	
+		}
+		if(!debounce_timeout) { // finished debouncing 
+			if(input_state) { // switch was pressed when we last looked
+				if(P_SWITCH) {
+					// switch is now released
+					input_state = 0;
+					debounce_timeout = DEBOUNCE_MS;
+					activity_timeout = AUTO_POWER_OFF_MS;
+				}
+			}
+			else {
+				if(!P_SWITCH) {
+					// switch is now pressed
+					input_state = 1;
+					debounce_timeout = DEBOUNCE_MS;
+					activity_timeout = AUTO_POWER_OFF_MS;
+					output_state = !output_state;
+					P_RELAY = output_state;
+				}
+			}
 		}
 	}
+	
+	// turn power off
+	P_RELAY = 0;
+	P_POWER = 0;
+	
+	for(;;);
 }
