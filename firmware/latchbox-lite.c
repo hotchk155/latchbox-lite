@@ -41,7 +41,7 @@ typedef unsigned char byte;
 #define P_SWITCH	porta.5
 
 // timeouts
-#define AUTO_POWER_OFF_MS		(5 * 60 * 1000)		// time from last input to auto power off
+#define AUTO_POWER_OFF_MS		(2 * 60 * 1000)		// time from last input to auto power off
 #define POWER_WARN_MS			(10 * 1000)			// warning time before auto power off
 #define DEBOUNCE_MS 			20					
 
