@@ -15432,7 +15432,7 @@ Source: www.kingbright.com</description>
 <sheets>
 <sheet>
 <plain>
-<text x="10.16" y="71.12" size="5.08" layer="95">LATCHBOX v2</text>
+<text x="10.16" y="71.12" size="5.08" layer="95">LATCHBOX v3</text>
 <text x="10.16" y="63.5" size="5.08" layer="95">August 2019 - Sixty four pixels ltd</text>
 <text x="10.16" y="55.88" size="5.08" layer="95">CC-NC-BY-SA</text>
 <text x="27.94" y="132.08" size="1.778" layer="91">switch pulls gate of Q1 low
@@ -15533,10 +15533,10 @@ present</text>
 <wire x1="20.32" y1="162.56" x2="20.32" y2="160.02" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="IN" gate="G$1" pin="3"/>
 <pinref part="GND3" gate="1" pin="GND"/>
-<wire x1="68.58" y1="226.06" x2="88.9" y2="226.06" width="0.1524" layer="91"/>
-<wire x1="88.9" y1="226.06" x2="88.9" y2="218.44" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="231.14" x2="88.9" y2="218.44" width="0.1524" layer="91"/>
+<pinref part="IN" gate="G$1" pin="2"/>
+<wire x1="68.58" y1="231.14" x2="88.9" y2="231.14" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="GND5" gate="1" pin="GND"/>
@@ -15829,14 +15829,13 @@ present</text>
 <approved hash="113,1,138.43,136.291,C1,,,,,"/>
 <approved hash="113,1,190.822,95.25,LED2,,,,,"/>
 <approved hash="113,1,180.662,95.25,LED1,,,,,"/>
-<approved hash="113,1,129.548,166.666,Q3,,,,,"/>
+<approved hash="113,1,129.548,166.666,Q2,,,,,"/>
 <approved hash="113,1,11.0243,184.92,USB,,,,,"/>
-<approved hash="113,1,38.1,166.277,D2,,,,,"/>
+<approved hash="113,1,38.1,166.277,D1,,,,,"/>
 <approved hash="113,1,228.837,123.321,ICSP,,,,,"/>
 <approved hash="113,1,60.0795,106.68,S1,,,,,"/>
-<approved hash="113,1,58.42,191.677,D1,,,,,"/>
-<approved hash="113,1,64.6769,137.16,D6,,,,,"/>
-<approved hash="113,1,191.677,134.62,D7,,,,,"/>
+<approved hash="113,1,58.42,191.677,D2,,,,,"/>
+<approved hash="113,1,191.677,134.62,D3,,,,,"/>
 </errors>
 </schematic>
 </drawing>
