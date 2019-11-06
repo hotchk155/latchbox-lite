@@ -16882,13 +16882,13 @@ Source: www.kingbright.com</description>
 <part name="R7" library="rcl" deviceset="R-EU_" device="R0805" value="1k"/>
 <part name="GND6" library="supply1" deviceset="GND" device=""/>
 <part name="GND10" library="supply1" deviceset="GND" device=""/>
-<part name="D3" library="microbuilder" deviceset="DIODE" device="SOD-123"/>
+<part name="D3" library="jasons_stuff" deviceset="0805DIODE" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
-<text x="10.16" y="71.12" size="5.08" layer="95">LATCHBOX v3</text>
-<text x="10.16" y="63.5" size="5.08" layer="95">October 2019 - Sixty four pixels ltd</text>
+<text x="10.16" y="71.12" size="5.08" layer="95">LATCHBOX v4</text>
+<text x="10.16" y="63.5" size="5.08" layer="95">November 2019 - Sixty four pixels ltd</text>
 <text x="10.16" y="55.88" size="5.08" layer="95">CC-NC-BY-SA</text>
 </plain>
 <instances>
@@ -16937,7 +16937,7 @@ Source: www.kingbright.com</description>
 <instance part="R7" gate="G$1" x="76.2" y="137.16" rot="R180"/>
 <instance part="GND6" gate="1" x="63.5" y="127"/>
 <instance part="GND10" gate="1" x="55.88" y="93.98"/>
-<instance part="D3" gate="G$1" x="55.88" y="129.54" rot="R270"/>
+<instance part="D3" gate="G$1" x="55.88" y="127" rot="R180"/>
 </instances>
 <busses>
 </busses>
@@ -17122,12 +17122,12 @@ Source: www.kingbright.com</description>
 <pinref part="ICSP" gate="A" pin="1"/>
 <junction x="119.38" y="114.3"/>
 <pinref part="S1" gate="1" pin="S"/>
-<pinref part="D3" gate="G$1" pin="C"/>
-<wire x1="55.88" y1="127" x2="55.88" y2="114.3" width="0.1524" layer="91"/>
 <wire x1="55.88" y1="114.3" x2="55.88" y2="111.76" width="0.1524" layer="91"/>
 <wire x1="91.44" y1="114.3" x2="55.88" y2="114.3" width="0.1524" layer="91"/>
 <junction x="91.44" y="114.3"/>
 <junction x="55.88" y="114.3"/>
+<pinref part="D3" gate="G$1" pin="P$2"/>
+<wire x1="55.88" y1="114.3" x2="55.88" y2="126.492" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$11" class="0">
@@ -17256,9 +17256,9 @@ Source: www.kingbright.com</description>
 <pinref part="Q3" gate="G$1" pin="C"/>
 <wire x1="63.5" y1="144.78" x2="63.5" y2="142.24" width="0.1524" layer="91"/>
 <junction x="63.5" y="144.78"/>
-<pinref part="D3" gate="G$1" pin="A"/>
-<wire x1="55.88" y1="144.78" x2="55.88" y2="132.08" width="0.1524" layer="91"/>
 <junction x="55.88" y="144.78"/>
+<pinref part="D3" gate="G$1" pin="P$1"/>
+<wire x1="55.88" y1="144.78" x2="55.88" y2="131.572" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$13" class="0">
