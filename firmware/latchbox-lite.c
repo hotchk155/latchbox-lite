@@ -11,6 +11,7 @@
 //
 // V1 - JUL19
 // V2 - 25OCT19 - change to auto power off handling
+// V3 - 27NOV19 - prevent accidental immediate power off
 //
 //////////////////////////////////////////////////////////////
 
@@ -62,6 +63,7 @@ Power Switch/I	RA3		RA2 Control Output/O
 
 // timeouts
 #define AUTO_POWER_OFF_MS		(10 * 60 * 1000)		// time from last input to auto power off
+#define POWER_ON_DELAY_MS		200						// delay after power on before we can power off
 #define DEBOUNCE_MS 			20					
 
 #define TIMER_0_INIT_SCALAR		5	// Timer 0 is an 8 bit timer counting at 250kHz
@@ -154,6 +156,15 @@ void main()
 				LED_PWR = !!(count & 0x01); // 50% duty
 				++count;
 			}
+		}
+
+		// long debounce delay after power on prevents
+		// accidental immediate power off 
+		for(int i=0; i<POWER_ON_DELAY_MS; ++i) {
+			while(!tick_flag);
+			tick_flag = 0;
+			LED_PWR = !!(count & 0x01); // 50% duty
+			++count;
 		}
 	}
 	

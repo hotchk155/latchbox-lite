@@ -1,5 +1,5 @@
 [Settings]
-Active Directory=D:\GitHub\latchbox-lite\firmware\
+Active Directory=C:\GitHub\latchbox-lite\firmware\
 Target=PIC16F1825
 Active Compiler=BoostC
 Active Config=Release
