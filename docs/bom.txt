@@ -1,0 +1,19 @@
+C1              100nF 0805
+D1, D2, Schottky
+D3, D4, D5, D6  4148
+F1              PTC Resettable Fuse
+IC1  		PIC12F1822
+Q1        	MOSFET-P SOT23
+Q2              NPN Darlington Transistor SOT23
+Q3              MMBT3904 NPN Transistor SOT23
+R1   		100
+R2, R5, R6, R7 	1k
+R3   		10k             
+R4   		4R7             
+
+USB             e
+
+RLY1 		9007 REED RELAY 
+S1              31-XX                         
+C2   		4u7
+
